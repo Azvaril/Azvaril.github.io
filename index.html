@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-con" sizes="16x16" href="icons/favicon.ico">
+    <title>Azvaril's puzzles</title>
+	
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+		
+        #left-section {
+			flex: 1;
+			background-color: #4CAF50;
+			color: white;
+			padding: 20px;
+			position: sticky;
+			top: 0;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+
+		#left-section header {
+			font-size: 24px;
+			margin-bottom: 20px;
+		}
+
+		.media-links {
+			margin-top: 20px;
+		}
+
+		.media-links a {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+			text-decoration: none;
+			color: white;
+			font-size: 16px;
+		}
+
+		.media-links a:hover {
+			text-decoration: underline;
+		}
+
+		.social-icon {
+			width: 20px;
+			height: 20px;
+			margin-right: 8px;
+			vertical-align: middle;
+		}
+
+		
+        #content {
+            flex: 3;
+            padding: 20px;
+        }
+        .series {
+            margin-bottom: 40px;
+        }
+        .series-header {
+            font-size: 20px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+        }
+        .puzzle {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .puzzle img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .puzzle-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .puzzle-description {
+			margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .puzzle-meta {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .puzzle-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .puzzle-link:hover {
+            background-color: #45a049;
+        }
+        #navigation {
+            flex: 1;
+            background-color: #eee;
+            padding: 20px;
+            border-left: 1px solid #ccc;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .nav-series {
+            margin-bottom: 20px;
+        }
+        .nav-series-header {
+			font-size: 18px;
+			font-weight: bold;
+			cursor: pointer;
+			padding: 5px;
+			background-color: #4CAF50;
+			color: white;
+			border-radius: 4px;
+		}
+		.nav-series-header .arrow {
+			margin-right: 10px;
+			font-size: 14px;
+		}
+        .nav-puzzles {
+            margin-top: 10px;
+            padding-left: 15px;
+            display: none;
+        }
+        .nav-puzzles a {
+            display: block;
+            text-decoration: none;
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+        .nav-puzzles a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            #navigation {
+                border-left: none;
+                border-top: 1px solid #ccc;
+                height: auto;
+                position: relative;
+            }
+            #left-section {
+                position: relative;
+                height: auto;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 10px;
+            }
+        }
+    </style>
+	<script>
+		function toggleNavigation(seriesId, header) {
+			const puzzles = document.getElementById(seriesId);
+			const arrow = header.querySelector('.arrow');
+
+			if (puzzles.style.display === 'block') {
+				puzzles.style.display = 'none';
+				arrow.textContent = '►';
+			} else {
+				puzzles.style.display = 'block';
+				arrow.textContent = '▼';
+			}
+		}
+		function toggleNavigation2(seriesId) {
+			const puzzles = document.getElementById(seriesId);
+			puzzles.style.display = puzzles.style.display === 'block' ? 'none' : 'block';
+		}
+	</script>
+</head>
+<body>
+	<div id="left-section">
+        <header>Azvaril's puzzles</header>
+		<div class="media-links">
+			<a href="https://logic-masters.de/Raetselportal/Benutzer/allgemein.php?name=Azvaril" target="_blank">
+				<img src="icons/lmg.ico" alt="LMD" class="social-icon"> Logic Masters Profile
+			</a>
+		</div>
+    </div>
+    <div id="content">
+        <div class="series">
+            <div class="series-header">Intro series</div>
+            <div class="puzzle" id="puzzle-11">
+                <div class="puzzle-title">Anti-Knight variant</div>
+				<img src="images/Intro series_ Anti-Knight variant.png" alt="Anti-Knight variant">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Anti-knight: The same numer cannot appear twice within a knight's move (2 over and 1 across in any direction)<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 1/10</div>
+                <a href="https://sudokupad.app/i7rtbi5yyu" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+            <div class="puzzle" id="puzzle-12">
+                <div class="puzzle-title">German Whisper variant</div>
+				<img src="images/Intro series_ German Whisper variant.png" alt="German Whisper variant">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					German Whisper: Neighboring digits along a green line must differ by at least 5.<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 2/10</div>
+                <a href="https://sudokupad.app/njq3jir8ui" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+			<div class="puzzle" id="puzzle-13">
+                <div class="puzzle-title">Palindrome variant</div>
+				<img src="images/Intro series_ Palindrome variant.png" alt="Palindrome variant">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Palindrom lines: Digits appear along a gray line in the same order when read forward or backwards.<br>
+					An X between two cells indicates that the cells sum to 10.<br>
+					A V between two cells indicates that the cells sum to 5.<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 3/10</div>
+                <a href="https://sudokupad.app/3oywryi0an" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+			<div class="puzzle" id="puzzle-14">
+                <div class="puzzle-title">Thermo Quadruples variant</div>
+				<img src="images/Intro series_ Thermo Quadruples variant.png" alt="Thermo Quadruples variant">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Thermometer: Along thermometers digits increase from the bulb.<br>
+					Quadruple: Digits inside a circle appear in one of the four surrounding cells.<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 3/10</div>
+                <a href="https://sudokupad.app/l465f8afg2" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+			<div class="puzzle" id="puzzle-15">
+                <div class="puzzle-title">Renban variant</div>
+				<img src="images/Intro series_ Renban variant.png" alt="Renban variant">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Renban line: Digits along a purple line must form a consecutive group, but they may appear in any order along the line.<br>
+					Partial Kropki: A white dot between two cells indicates that the neighbouring digits are consecutive. A black dot between two cells indicates that one of the digits is twice as big as the other digit. Not all possible dots are given.<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 4/10</div>
+                <a href="https://sudokupad.app/0z022lsb8s" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+			<div class="puzzle" id="puzzle-16">
+                <div class="puzzle-title">Killer cages variant</div>
+				<img src="images/Intro series_ Killer cages variant.png" alt="Killer cages variant">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Killer cages: The cells in each cage must sum up to the number in the top left corner of the cage and numbers cannot be repeated inside a cage.<br>
+					Even and Odd: Cells containing a square must be even and cells containing a circle must be odd.<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 4/10</div>
+                <a href="https://sudokupad.app/n2i4vj7cqb" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+        </div>
+        <div class="series">
+            <div class="series-header">Beginners friendly</div>
+            <div class="puzzle" id="puzzle-21">
+                <div class="puzzle-title">Kropmodoku</div>
+				<img src="images/Kropmodoku.png" alt="Kropmodoku">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Thermometer: Along thermometers digits increase from the bulb.<br>
+					Partial Kropki: A white dot between two cells indicates that the neighbouring digits are consecutive. A black dot between two cells indicates that one of the digits is twice as big as the other digit. Not all possible dots are given.<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 5/10</div>
+                <a href="https://sudokupad.app/rl1s20fdto" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+			<div class="puzzle" id="puzzle-22">
+                <div class="puzzle-title">Morning exercise</div>
+				<img src="images/Morning exercise.png" alt="Morning exercise">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Thermometer: Along thermometers digits increase from the bulb.<br>
+					German Whisper: Neighboring digits along a green line must differ by at least 5.<br>
+					Renban line: Digits along a purple line must form a consecutive group, but they may appear in any order along the line.<br>
+					Partial Kropki: A white dot between two cells indicates that the neighbouring digits are consecutive. A black dot between two cells indicates that one of the digits is twice as big as the other digit. Not all possible dots are given.<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 5/10</div>
+                <a href="https://sudokupad.app/7sfsqepp6o" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+			<div class="puzzle" id="puzzle-23">
+                <div class="puzzle-title">First Frost</div>
+				<img src="images/First Frost.png" alt="First Frost">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Slow Thermometer: Digits along slow thermometers must either stay the same or increase from the bulb to the tip.<br>
+					Partial Kropki: A white dot between two cells indicates that the neighbouring digits are consecutive. A black dot between two cells indicates that one of the digits is twice as big as the other digit. Not all possible dots are given.<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 5/10</div>
+                <a href="https://sudokupad.app/u0zyjd6g9i" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+			
+        </div>
+		<div class="series">
+            <div class="series-header">Intermediate Explorations</div>
+            <div class="puzzle" id="puzzle-31">
+                <div class="puzzle-title">Interconnection</div>
+				<img src="images/Interconnection.png" alt="Interconnection">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Thermometer: Along thermometers digits increase from the bulb.<br>
+					German Whisper: Neighboring digits along a green line must differ by at least 5.<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 6/10</div>
+                <a href="https://sudokupad.app/5h5lqim280" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+        </div>
+		<div class="series">
+            <div class="series-header">Special Thermometers</div>
+            <div class="puzzle" id="puzzle-41">
+                <div class="puzzle-title">Fixed Thermometers</div>
+				<img src="images/Fixed Thermometers.png" alt="Fixed Thermometers">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Fixed Thermometer: Digits along the thermometers strictly increase from the bulb to the tip by a fixed step. This step may vary for other thermometers and must be determined by the solver. However, this step must never be greater than 6.<br>
+					E.g. You may have one thermo: 2,4,6 (strictly increasing by 2), and a second thermo: 3,4,5 (strictly increasing by 1)<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 6/10</div>
+                <a href="https://sudokupad.app/clntr6jj9t" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+			<div class="puzzle" id="puzzle-42">
+                <div class="puzzle-title">Locked Mercury</div>
+				<img src="images/Locked Mercury.png" alt="Locked Mercury">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					German Whisper: Neighboring digits along a green line must differ by at least 5.<br>
+					Black dot: A black dot between two cells indicates that one of the digits is twice as big as the other digit. Not all possible dots are given.<br>
+					Fixed Thermometers: Numbers on thermometers strictly increase from the bulb to the tip by a fixed step. This step is the same for all thermometers and must be determined by the solver.<br>
+					E.g. if you figured out that the numbers on a thermometer are 4-6-8, this means that the numbers on all thermometers are constantly increasing with the step of 2.<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 6/10</div>
+                <a href="https://sudokupad.app/t92a5ynibk" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+        </div>
+		<div class="series">
+            <div class="series-header">Advanced Challenges</div>
+            <div class="puzzle" id="puzzle-51">
+                <div class="puzzle-title">5 Disjoint Thermo</div>
+				<img src="images/5 Disjoint Thermo.png" alt="5 Disjoint Thermo">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Thermometer: Along thermometers digits increase from the bulb.<br>
+					Disjoint Group: Cells in the same relative position in their 3x3 box must not contain the same digit.<br>
+					E.g. if the top left corner of a box contains 5, you cannot place a 5 in the top left corner of any other 3x3 boxes<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 8/10</div>
+                <a href="https://sudokupad.app/bv9p0owkts" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+			<div class="puzzle" id="puzzle-52">
+                <div class="puzzle-title">No valid rope found</div>
+				<img src="images/No valid rope found.png" alt="No valid rope found">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Thermometer: Along thermometers digits increase from the bulb.<br>
+					Renban line: Digits along a purple line must form a consecutive group, but they may appear in any order along the line.<br>
+					Non-consecutive: Orthogonally adjacent cells may not contain consecutive digits.<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 7/10</div>
+                <a href="https://sudokupad.app/ngi8byc9oo" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+			<div class="puzzle" id="puzzle-53">
+                <div class="puzzle-title">Quadphonia</div>
+				<img src="images/Quadphonia.png" alt="Quadphonia">
+                <div class="puzzle-description">
+					Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+					Dutch  Whisper: Neighboring digits along a green line must differ by at least 4.<br>
+					Quadruple: Digits inside a circle appear in one of the four surrounding cells.<br>
+					Consecutive pair: Digits separated by a small white dot must be consecutive.<br>
+				</div>
+                <div class="puzzle-meta">Difficulty: 7/10</div>
+                <a href="https://sudokupad.app/i466rfbzjb" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+            </div>
+        </div>
+    </div>
+
+	<div id="navigation">
+        <div class="nav-series">
+            <div class="nav-series-header" onclick="toggleNavigation('nav-series-1', this)">
+				<span class="arrow">▼</span>Intro series
+			</div>
+            <div class="nav-puzzles" id="nav-series-1" style="display: block;">
+                <a href="#puzzle-11">Anti-Knight variant</a>
+                <a href="#puzzle-12">German Whisper variant</a>
+				<a href="#puzzle-13">Palindrome variant</a>
+				<a href="#puzzle-14">Thermo Quadruples variant</a>
+				<a href="#puzzle-15">Renban variant</a>
+				<a href="#puzzle-16">Killer cages variant</a>
+            </div>
+        </div>
+        <div class="nav-series">
+            <div class="nav-series-header" onclick="toggleNavigation('nav-series-2', this)">
+				<span class="arrow">►</span>Beginners friendly
+			</div>
+            <div class="nav-puzzles" id="nav-series-2">
+                <a href="#puzzle-21">Kropmodoku</a>
+				<a href="#puzzle-22">Morning exercise</a>
+				<a href="#puzzle-23">First Frost</a>
+            </div>
+        </div>
+		<div class="nav-series">
+            <div class="nav-series-header" onclick="toggleNavigation('nav-series-3', this)">
+				<span class="arrow">►</span>Intermediate Explorations
+			</div>
+            <div class="nav-puzzles" id="nav-series-3">
+                <a href="#puzzle-31">Interconnection</a>
+            </div>
+        </div>
+		<div class="nav-series">
+            <div class="nav-series-header" onclick="toggleNavigation('nav-series-4', this)">
+				<span class="arrow">►</span>Special Thermometers
+			</div>
+            <div class="nav-puzzles" id="nav-series-4">
+                <a href="#puzzle-41">Fixed Thermometers</a>
+				<a href="#puzzle-42">Locked Mercury</a>
+            </div>
+        </div>
+		<div class="nav-series">
+            <div class="nav-series-header" onclick="toggleNavigation('nav-series-5', this)">
+				<span class="arrow">►</span>Advanced Challenges
+			</div>
+            <div class="nav-puzzles" id="nav-series-5">
+                <a href="#puzzle-51">5 Disjoint Thermo</a>
+				<a href="#puzzle-52">No valid rope found</a>
+				<a href="#puzzle-53">Quadphonia</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
