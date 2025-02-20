@@ -201,6 +201,19 @@
 		</div>
     </div>
     <div id="content">
+		<div class="series">
+				<div class="series-header">Genuinely Approachable Sudokus</div>
+				<div class="puzzle" id="puzzle-01">
+					<div class="puzzle-title">001</div>
+					<img src="images/GAS_ 001.png" alt="GAS_ 001.png">
+					<div class="puzzle-description">
+						Normal sudoku: Every row, column and 3x3 box must have all numbers from 1 to 9 exactly once.<br>
+						German Whisper: Neighboring digits along a green line must differ by at least 5.<br>
+					</div>
+					<div class="puzzle-meta">Difficulty: 2/10</div>
+					<a href="https://sudokupad.app/2qdzo6uw9z" class="puzzle-link" target="_blank">Solve on SudokuPad</a>
+				</div>
+			</div>
         <div class="series">
             <div class="series-header">Intro series</div>
             <div class="puzzle" id="puzzle-11">
@@ -428,8 +441,17 @@
             </div>
         </div>
     </div>
-
+	
 	<div id="navigation">
+		<div class="nav-series">
+            <div class="nav-series-header" onclick="toggleNavigation('nav-series-0', this)">
+				<span class="arrow">▼</span>Genuinely Approachable Sudokus
+			</div>
+            <div class="nav-puzzles" id="nav-series-0" style="display: block;">
+                <a href="#puzzle-01">001</a>
+
+            </div>
+        </div>
         <div class="nav-series">
             <div class="nav-series-header" onclick="toggleNavigation('nav-series-1', this)">
 				<span class="arrow">▼</span>Intro series
