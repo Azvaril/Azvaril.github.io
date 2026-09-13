@@ -66,13 +66,11 @@ select:focus-visible {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    transition: padding 150ms ease;
 }
 
 .brand h1 {
     margin: 0;
     font-size: 1.9rem;
-    transition: font-size 150ms ease;
 }
 
 .brand .tagline {
@@ -94,7 +92,7 @@ select:focus-visible {
     border: 2px solid rgba(255, 255, 255, 0.6);
     min-height: 44px;
     min-width: 44px;
-    transition: padding 150ms ease;
+    transition: background-color 150ms ease;
 }
 
 .header-links a:hover {

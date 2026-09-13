@@ -347,21 +347,55 @@
     // Once the page scrolls down, the header drops its tagline and shrinks
     // the Logic Masters link to an icon, so it stops crowding the puzzle
     // list. Same behaviour on desktop and mobile.
+    //
+    // The header is `position: sticky`, so shrinking it changes the page's
+    // layout, which shifts scrollY by roughly the height difference (up to
+    // ~130px on a narrow phone, since the header wraps onto more lines
+    // there). With a single threshold, that shift can cross right back over
+    // it, undoing the toggle - which undoes the shift, re-crossing it again,
+    // and so on: an infinite flicker that a slow scroll (small, steady
+    // deltas) falls straight into, while a fast scroll jumps clean over it.
+    // Two thresholds with a gap wider than that shift (hysteresis) prevent
+    // it. The shift is measured directly (rather than guessed) so this stays
+    // correct across viewport widths, font sizes and browser zoom.
     (function () {
         const header = document.querySelector(".site-header");
         if (!header) return;
-        const COMPACT_THRESHOLD = 24;
+
+        const EXIT_COMPACT = 16;
+        const SAFETY_MARGIN = 60;
+        let enterCompact = 150; // replaced with a measured, safe value below
         let isCompact = false;
 
+        function measureThresholds() {
+            const wasCompact = header.classList.contains("compact");
+            header.classList.remove("compact");
+            const normalHeight = header.offsetHeight;
+            header.classList.add("compact");
+            const compactHeight = header.offsetHeight;
+            header.classList.toggle("compact", wasCompact);
+
+            const shrink = normalHeight - compactHeight;
+            enterCompact = EXIT_COMPACT + Math.max(shrink, 0) + SAFETY_MARGIN;
+        }
+
         function onScroll() {
-            const shouldBeCompact = window.scrollY > COMPACT_THRESHOLD;
-            if (shouldBeCompact !== isCompact) {
-                isCompact = shouldBeCompact;
+            const y = window.scrollY;
+            let next = isCompact;
+            if (!isCompact && y > enterCompact) {
+                next = true;
+            } else if (isCompact && y < EXIT_COMPACT) {
+                next = false;
+            }
+            if (next !== isCompact) {
+                isCompact = next;
                 header.classList.toggle("compact", isCompact);
                 syncHeaderHeight();
             }
         }
 
+        measureThresholds();
+        window.addEventListener("resize", measureThresholds);
         window.addEventListener("scroll", onScroll, { passive: true });
         onScroll();
     })();
