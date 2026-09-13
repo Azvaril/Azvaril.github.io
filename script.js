@@ -330,22 +330,39 @@
         render();
     }
 
-    /* ---------- Sticky header/controls height sync ---------- */
-    // Both the header and the controls bar can wrap onto extra lines on
-    // narrow screens, so their heights are measured rather than hardcoded,
-    // keeping the filters panel anchored directly under them.
-    function syncStickyOffsets() {
+    /* ---------- Sticky header height sync ---------- */
+    // The header's height changes between its normal and compact states, so
+    // it's measured rather than hardcoded (used for anchor-scroll offsets).
+    function syncHeaderHeight() {
         const header = document.querySelector(".site-header");
-        const controls = document.querySelector(".controls");
-        if (header) {
-            document.documentElement.style.setProperty("--header-height", `${header.offsetHeight}px`);
-        }
-        if (controls) {
-            document.documentElement.style.setProperty("--controls-height", `${controls.offsetHeight}px`);
-        }
+        if (!header) return;
+        document.documentElement.style.setProperty("--header-height", `${header.offsetHeight}px`);
     }
 
-    window.addEventListener("load", syncStickyOffsets);
-    window.addEventListener("resize", syncStickyOffsets);
-    syncStickyOffsets();
+    window.addEventListener("load", syncHeaderHeight);
+    window.addEventListener("resize", syncHeaderHeight);
+    syncHeaderHeight();
+
+    /* ---------- Compact header on scroll ---------- */
+    // Once the page scrolls down, the header drops its tagline and shrinks
+    // the Logic Masters link to an icon, so it stops crowding the puzzle
+    // list. Same behaviour on desktop and mobile.
+    (function () {
+        const header = document.querySelector(".site-header");
+        if (!header) return;
+        const COMPACT_THRESHOLD = 24;
+        let isCompact = false;
+
+        function onScroll() {
+            const shouldBeCompact = window.scrollY > COMPACT_THRESHOLD;
+            if (shouldBeCompact !== isCompact) {
+                isCompact = shouldBeCompact;
+                header.classList.toggle("compact", isCompact);
+                syncHeaderHeight();
+            }
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+    })();
 })();
