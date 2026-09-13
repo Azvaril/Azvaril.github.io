@@ -1,0 +1,407 @@
+:root {
+    --green-dark: #2e7d32;
+    --green: #4CAF50;
+    --green-light: #e8f5e9;
+    --green-hover: #45a049;
+    --text: #222222;
+    --text-muted: #4a4a4a;
+    --border: #cfe8d1;
+    --bg: #f7faf7;
+    --white: #ffffff;
+    --focus-ring: #1b5e20;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 18px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+a {
+    color: var(--green-dark);
+}
+
+button, select {
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+/* Focus visibility for keyboard and assistive tech users */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+/* Header */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background-color: var(--green);
+    color: var(--white);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.site-header-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 1.9rem;
+}
+
+.brand .tagline {
+    margin: 4px 0 0;
+    font-size: 1rem;
+    color: var(--green-light);
+}
+
+.header-links a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    min-height: 44px;
+}
+
+.header-links a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.social-icon {
+    width: 22px;
+    height: 22px;
+}
+
+/* Controls bar (sort + filters toggle) - stays compact so it never crowds out the puzzle list */
+.controls {
+    position: sticky;
+    top: var(--header-height, 84px);
+    z-index: 15;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    padding: 12px 20px;
+}
+
+.controls-row {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.sort-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.sort-control label {
+    font-weight: 600;
+}
+
+.sort-control select {
+    padding: 10px 12px;
+    min-height: 44px;
+    border-radius: 8px;
+    border: 2px solid var(--green);
+    background-color: var(--white);
+    color: var(--text);
+}
+
+.btn {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    min-height: 44px;
+    border-radius: 8px;
+    border: 2px solid var(--green);
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.btn-secondary {
+    background-color: var(--white);
+    color: var(--green-dark);
+}
+
+.btn-secondary:hover {
+    background-color: var(--green-light);
+}
+
+#filters-toggle[aria-expanded="true"],
+#filters-toggle.has-active-filters {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+#filters-toggle[aria-expanded="true"]:hover,
+#filters-toggle.has-active-filters:hover {
+    background-color: var(--green-hover);
+}
+
+.filters-count {
+    display: inline-block;
+    margin-left: 8px;
+    background-color: var(--white);
+    color: var(--green-dark);
+    border-radius: 999px;
+    padding: 1px 8px;
+    font-size: 0.9rem;
+}
+
+.filters-count[hidden] {
+    display: none;
+}
+
+/* Filters panel - collapsed by default, opened on demand via the Filters button.
+   Sticky so it always appears right under the controls bar, wherever the page is scrolled. */
+.filters-panel {
+    position: sticky;
+    top: calc(var(--header-height, 84px) + var(--controls-height, 68px));
+    z-index: 14;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    padding: 16px 20px;
+    max-height: calc(100vh - var(--header-height, 84px) - var(--controls-height, 68px));
+    overflow-y: auto;
+}
+
+.filters-panel-header {
+    max-width: 1000px;
+    margin: 0 auto 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.filters-panel-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-filter-label {
+    font-weight: 600;
+}
+
+.tag-filter {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-pill {
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 9px 16px;
+    min-height: 44px;
+    border-radius: 999px;
+    border: 2px solid var(--green);
+    background-color: var(--white);
+    color: var(--green-dark);
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.tag-pill:hover {
+    background-color: var(--green-light);
+}
+
+.tag-pill[aria-pressed="true"] {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+/* Main content */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+}
+
+.empty-state {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+}
+
+.puzzle-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.puzzle-card {
+    background-color: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    scroll-margin-top: calc(var(--header-height, 84px) + 150px);
+}
+
+.puzzle-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.puzzle-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.puzzle-id {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.puzzle-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.puzzle-image {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    border-radius: 10px;
+    margin: 12px 0;
+    border: 1px solid var(--border);
+}
+
+.puzzle-description p {
+    margin: 0 0 10px;
+    font-size: 1.05rem;
+    color: var(--text);
+}
+
+.puzzle-description p:last-child {
+    margin-bottom: 0;
+}
+
+.puzzle-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.difficulty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.difficulty-bar {
+    display: flex;
+    gap: 3px;
+}
+
+.difficulty-bar span {
+    width: 10px;
+    height: 16px;
+    border-radius: 2px;
+    background-color: var(--border);
+}
+
+.difficulty-bar span.filled {
+    background-color: var(--green);
+}
+
+.puzzle-link {
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 12px 22px;
+    min-height: 44px;
+    background-color: var(--green);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 150ms ease;
+}
+
+.puzzle-link:hover {
+    background-color: var(--green-hover);
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 17px;
+    }
+
+    .site-header-inner {
+        padding: 14px 16px;
+    }
+
+    .controls {
+        padding: 10px 16px;
+    }
+
+    .filters-panel {
+        padding: 14px 16px;
+    }
+
+    main {
+        padding: 20px 16px 48px;
+    }
+
+    .puzzle-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .puzzle-link {
+        text-align: center;
+    }
+}
