@@ -12,7 +12,7 @@ Dutch Whispers,Adjacent digits along an orange line must differ by at least 4.
 Quadruple,Digits inside a circle appear in one of the four surrounding cells.
 Fixed Thermometer,Fixed Thermometer: Digits along the thermometers strictly increase from the bulb to the tip by a fixed step.
 Anti-king,The same digit cannot appear one cell diagonally adjacent from itself.
-Arrow,The digits along the shaft of an arrow must sum to the digit at the circle.
+Arrow,The digits along the arrow must sum to the digit at the circle.
 Maximum,Cells with arrows pointing outward must contain digits greater than all orthogonal cells.
 Minimum,Cells with arrows pointing inward must contain digits less than all orthogonal cells.
 Palindrome,Digits appear along a gray line in the same order when read forward or backwards.
