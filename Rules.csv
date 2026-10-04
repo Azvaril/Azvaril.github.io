@@ -6,7 +6,7 @@ Thermometer,Digits along a thermometer increase from the bulb to the tip.
 Disjoint Group,Cells in the same relative position in their 3x3 box must not contain the same digit.
 German Whispers,Adjacent digits along a green line must differ by at least 5.
 Non-consecutive,Orthogonally adjacent cells may not contain consecutive digits.
-Renban,The digits on a purple line must contain a non-repeating set of consecutive digits in any order
+Renban,The digits on a purple line must contain a non-repeating set of consecutive digits in any order.
 Slow Thermometer,Digits along a slow thermometer must either stay the same or increase from the bulb to the tip.
 Dutch Whispers,Adjacent digits along an orange line must differ by at least 4.
 Quadruple,Digits inside a circle appear in one of the four surrounding cells.
@@ -16,12 +16,13 @@ Arrow,The digits along the arrow must sum to the digit at the circle.
 Maximum,Cells with arrows pointing outward must contain digits greater than all orthogonal cells.
 Minimum,Cells with arrows pointing inward must contain digits less than all orthogonal cells.
 Palindrome,Digits appear along a gray line in the same order when read forward or backwards.
-V,V between two cells indicates that the cells sum to 5
+V,V between two cells indicates that the cells sum to 5.
 X,X between two cells indicates that the cells sum to 10.
 Binary Tree,"Min binary tree: each parent node is smaller than its children.
 Max binary tree: each parent node is larger than its children."
 Greater than,"The digit on the open side of the "">"" sign must be larger than the digit on the pointed side."
-Anti-knight,The same digit cannot appear twice within a knight's move (2 over and 1 across in any direction)
+Anti-knight,The same digit cannot appear twice within a knight's move (2 over and 1 across in any direction).
 Killer cages,The digits in each cage must sum up to the number in the top left corner of the cage. Digits cannot repeat inside a cage.
-Even,Cells containing a square must be even
+Even,Cells containing a square must be even.
 Odd,Cells containing a circle must be odd.
+Anti-diagonal 1s,"Two 1s may not lie on the same diagonal in either direction, regardless of how far apart they are."
