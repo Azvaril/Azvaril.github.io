@@ -45,9 +45,8 @@ select:focus-visible {
     outline-offset: 2px;
 }
 
-/* Header - sticky, and shrinks once the page is scrolled so it stops
-   competing with the puzzle list for space. Same behaviour on every
-   viewport size. */
+/* Header - sticky and kept compact at a fixed size, so it never competes
+   with the puzzle list for space. Same behaviour on every viewport size. */
 .site-header {
     position: sticky;
     top: 0;
@@ -60,7 +59,7 @@ select:focus-visible {
 .site-header-inner {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 16px 20px;
+    padding: 8px 20px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -70,24 +69,25 @@ select:focus-visible {
 
 .brand h1 {
     margin: 0;
-    font-size: 1.9rem;
+    font-size: 1.3rem;
 }
 
 .brand .tagline {
-    margin: 4px 0 0;
-    font-size: 1rem;
-    color: var(--green-light);
+    display: none;
+}
+
+.header-links {
+    display: flex;
+    gap: 10px;
 }
 
 .header-links a {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
     color: var(--white);
     text-decoration: none;
-    font-size: 1.05rem;
-    font-weight: 600;
-    padding: 10px 14px;
+    padding: 8px;
     border-radius: 8px;
     border: 2px solid rgba(255, 255, 255, 0.6);
     min-height: 44px;
@@ -104,25 +104,8 @@ select:focus-visible {
     height: 22px;
 }
 
-/* Compact header state, applied by script.js once the page scrolls down */
-.site-header.compact .site-header-inner {
-    padding: 8px 20px;
-}
-
-.site-header.compact .brand h1 {
-    font-size: 1.3rem;
-}
-
-.site-header.compact .brand .tagline {
-    display: none;
-}
-
-.site-header.compact .header-links a {
-    padding: 8px;
-}
-
-.site-header.compact .header-links a .link-text {
-    display: none;
+.youtube-link svg.social-icon {
+    color: #ff0000;
 }
 
 /* Controls bar (sort + filters toggle). Not sticky - it lives at the top of
